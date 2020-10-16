@@ -12,12 +12,29 @@
 $content = get_the_content();
 
 if ( has_block( 'core/video', $content ) ) {
-	twenty_twenty_one_print_first_instance_of_block( 'core/video', $content );
-} elseif ( has_block( 'core/embed', $content ) ) {
-	twenty_twenty_one_print_first_instance_of_block( 'core/embed', $content );
-} else {
-	twenty_twenty_one_print_first_instance_of_block( 'core-embed/*', $content );
-}
 
-// Add the excerpt.
-the_excerpt();
+	// Render the block.
+	twenty_twenty_one_print_first_instance_of_block( 'core/video', $content );
+
+	// Add the excerpt.
+	the_excerpt();
+} elseif ( has_block( 'core/embed', $content ) ) {
+
+	// Render the block.
+	twenty_twenty_one_print_first_instance_of_block( 'core/embed', $content );
+
+	// Add the excerpt.
+	the_excerpt();
+} else {
+
+	// This checks if we have a core-embed block and prints it at the same time.
+	// If a block was found it adds the excerpt,
+	// otherwise it will fallback to the full-content for backwards-compatibility with non-block posts.
+	if ( twenty_twenty_one_print_first_instance_of_block( 'core-embed/*', $content ) ) {
+		// Add the excerpt.
+		the_excerpt();
+	} else {
+		// Fallback to the full content.
+		the_content();
+	}
+}
