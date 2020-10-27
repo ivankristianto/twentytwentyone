@@ -26,6 +26,6 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{secrets.LHCI_GITHUB_APP_TOKEN}}
           LHCI_SERVER_BASE_URL: ${{secrets.LHCI_SERVER_BASE_URL}}
           LHCI_TOKEN: ${{secrets.LHCI_TOKEN}}
-      - name: Assert Artifact
-        run: |
-          lhci assert
+      # - name: Assert Artifact
+      #   run: |
+      #     lhci assert
